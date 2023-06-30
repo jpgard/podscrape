@@ -32,7 +32,7 @@ def main(
     index = podcastindex.init(config)
     timestamp = datetime.datetime.now()
     # while len(episode_data) < max_episodes:
-    for feed_id in range(max_feed_id):
+    for feed_id in range(1, max_feed_id):
         print(f"processing feed %s" % feed_id)
         feed = index.podcastByFeedId(feed_id).get('feed')
 
