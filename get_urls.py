@@ -87,15 +87,17 @@ def main(
                          feed_language=feed['language'],
                          ))
 
-
             if (datetime.datetime.now() - timestamp).total_seconds() > (15 * 60):
                 timestamp = datetime.datetime.now()
                 archived_data = pd.concat((archived_data, pd.DataFrame(current_data)))
-                print(f"[INFO] writing {len(current_data)} new episodes to {outfile}; {len(archived_data)} total")
+                print(f"[INFO] writing {len(current_data)} new episodes "
+                      f"to {outfile}; {len(archived_data)} total")
                 archived_data.to_csv(outfile, index=False)
                 current_data = []
+
             if (archived_data is not None) and (len(archived_data) > max_episodes):
-                print(f"[INFO] terminating with {len(archived_data)} episodes.")
+                print(f"[INFO] got max episodes: "
+                      f"terminating with {len(archived_data)} > {max_episodes} episodes.")
                 break
             feed_id += 1
 
