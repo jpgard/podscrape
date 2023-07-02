@@ -59,6 +59,7 @@ def main(
                 # since=-525600 # in the last year
             )
             if not recent_episodes['items']:
+                feed_id += 1
                 continue
             else:
                 print(f"got {len(recent_episodes['items'])} recent episodes"
@@ -85,6 +86,7 @@ def main(
                          feed_language=feed['language'],
                          ))
 
+
             if (datetime.datetime.now() - timestamp).total_seconds() > (15 * 60):
                 timestamp = datetime.datetime.now()
                 archived_data = pd.concat((archived_data, pd.DataFrame(current_data)))
@@ -94,6 +96,8 @@ def main(
             if (archived_data is not None) and (len(archived_data) > max_episodes):
                 print(f"[INFO] terminating with {len(archived_data)} episodes.")
                 break
+            feed_id += 1
+
         except (ConnectionResetError, ConnectionError, ProtocolError) as e:
             print(f"[WARNING] got exception {e}; resetting connection")
             num_retries += 1
