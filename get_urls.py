@@ -111,7 +111,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-key", type=str)
     parser.add_argument("--api-secret", type=str)
     parser.add_argument("--max-episodes", type=int, default=1000)
-    parser.add_argument("--resume-from-outfile", type=bool,
+    parser.add_argument("--resume-from-outfile",
                         default=False, action="store_true")
     args = parser.parse_args()
     main(**vars(args))
