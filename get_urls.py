@@ -51,6 +51,7 @@ def main(
 
             if not feed:
                 print(f'skipping empty feed id %s' % feed_id)
+                feed_id += 1
                 continue
 
             recent_episodes = index.episodesByFeedId(
