@@ -15,7 +15,7 @@ from urllib3.exceptions import ProtocolError
 
 
 def main(
-        max_episodes: int = 50_000_000,
+        max_episodes: int,
         max_feed_id: int = 7_000_000,  # max ID was 6442332 as of 6/30/23
         api_key: str = None,
         api_secret: str = None,
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--api-key", type=str)
     parser.add_argument("--api-secret", type=str)
-    parser.add_argument("--max-episodes", type=int, default=1000)
+    parser.add_argument("--max-episodes", type=int, default=50_000_000)
     parser.add_argument("--resume-from-outfile",
                         default=False, action="store_true")
     args = parser.parse_args()
