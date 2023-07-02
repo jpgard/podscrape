@@ -91,7 +91,7 @@ def main(
                 print(f"[INFO] writing {len(current_data)} new episodes to {outfile}; {len(archived_data)} total")
                 archived_data.to_csv(outfile, index=False)
                 current_data = []
-            if len(archived_data) > max_episodes:
+            if (archived_data is not None) and (len(archived_data) > max_episodes):
                 print(f"[INFO] terminating with {len(archived_data)} episodes.")
                 break
         except (ConnectionResetError, ConnectionError, ProtocolError) as e:
