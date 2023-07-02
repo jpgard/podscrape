@@ -35,12 +35,13 @@ def main(
     if resume_from_outfile:
         archived_data = pd.read_csv(outfile)
         print(f"[INFO] successfully read in {len(archived_data)} records")
+        feed_id = archived_data['feed_id'].max()
     else:
         archived_data = None
+        feed_id = 1
 
     index = podcastindex.init(config)
     timestamp = datetime.datetime.now()
-    feed_id = 1
     num_retries = 0
     max_num_retries = 2048
     while feed_id < max_feed_id:
@@ -97,6 +98,7 @@ def main(
             print(f"[WARNING] got exception {e}; resetting connection")
             num_retries += 1
             if num_retries > max_num_retries:
+                print(f"[WARNING] reached max num retries = {max_num_retries}; terminating")
                 break
             else:
                 index = podcastindex.init(config)
