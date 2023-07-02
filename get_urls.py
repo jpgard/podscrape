@@ -64,7 +64,7 @@ def main(
                 continue
             else:
                 print(f"got {len(recent_episodes['items'])} recent episodes"
-                      f"\ncurrent total: {len(current_data)}")
+                      f"\ncurrent total: {len(current_data) + len(archived_data)}")
             for episode in tqdm(recent_episodes['items']):
                 # results = index.episodeById(1270106072)
                 url = episode['enclosureUrl']
