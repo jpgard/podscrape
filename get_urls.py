@@ -35,7 +35,7 @@ def main(
     if resume_from_outfile:
         archived_data = pd.read_csv(outfile)
         print(f"[INFO] successfully read in {len(archived_data)} records")
-        feed_id = archived_data['feed_id'].astype(int).max()
+        feed_id = int(pd.to_numeric(archived_data['feed_id']).max())
     else:
         archived_data = None
         feed_id = 1
