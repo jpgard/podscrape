@@ -7,6 +7,7 @@ import argparse
 import datetime
 import json
 
+import numpy as np
 import pandas as pd
 import podcastindex
 from requests.exceptions import ConnectionError
@@ -35,7 +36,7 @@ def main(
     if resume_from_outfile:
         archived_data = pd.read_csv(outfile)
         print(f"[INFO] successfully read in {len(archived_data)} records")
-        feed_id = int(pd.to_numeric(archived_data['feed_id']).max())
+        feed_id = int(np.nanmax(pd.to_numeric(archived_data['feed_id']).values))
     else:
         archived_data = None
         feed_id = 1
